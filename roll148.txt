@@ -1,0 +1,96 @@
+                                      
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$  echo -e "Hello/jay" > abc.txt
+                                                                                
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$ zip --password secret123 word.zip abc.txt 
+  adding: abc.txt (stored 0%)
+                                                                                
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$  zip2john word.zip > ziphash.txt
+Command 'zip2john' not found, but can be installed with:
+sudo apt install john
+
+                                                                                
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$ sudo apt install john
+[sudo] password for bluejay: 
+Sorry, try again.
+[sudo] password for bluejay: 
+Installing:                     
+  john
+
+Installing dependencies:
+  john-data
+
+Suggested packages:
+  ruby
+
+Summary:
+  Upgrading: 0, Installing: 2, Removing: 0, Not Upgrading: 266
+  Download size: 36.8 MB
+  Space needed: 145 MB / 95.6 GB available
+
+Continue? [Y/n] y
+Get:1 http://http.kali.org/kali kali-rolling/main amd64 john-data all 1.9.0-Jumbo-1+git20211102-0kali9 [22.8 MB]
+Get:2 http://http.kali.org/kali kali-rolling/main amd64 john amd64 1.9.0-Jumbo-1+git20211102-0kali9 [14.1 MB]
+Fetched 36.8 MB in 1min 29s (412 kB/s)                                         
+Selecting previously unselected package john-data.
+(Reading database ... 378485 files and directories currently installed.)
+Preparing to unpack .../john-data_1.9.0-Jumbo-1+git20211102-0kali9_all.deb ...
+Unpacking john-data (1.9.0-Jumbo-1+git20211102-0kali9) ...
+Selecting previously unselected package john.
+Preparing to unpack .../john_1.9.0-Jumbo-1+git20211102-0kali9_amd64.deb ...
+Unpacking john (1.9.0-Jumbo-1+git20211102-0kali9) ...
+Setting up john-data (1.9.0-Jumbo-1+git20211102-0kali9) ...
+Setting up john (1.9.0-Jumbo-1+git20211102-0kali9) ...
+Processing triggers for kali-menu (2025.1.1) ...
+Processing triggers for man-db (2.13.0-1) ...
+                                                                                
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$  zip2john word.zip > ziphash.txt         
+Created directory: /home/bluejay/.john
+ver 1.0 efh 5455 efh 7875 word.zip/abc.txt PKZIP Encr: 2b chk, TS_chk, cmplen=22, decmplen=10, crc=0AD4E027 ts=5711 cs=5711 type=0
+                                                                                
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$  sudo apt install wordlists
+Installing:                     
+  wordlists
+
+Summary:
+  Upgrading: 0, Installing: 1, Removing: 0, Not Upgrading: 266
+  Download size: 53.4 MB
+  Space needed: 53.4 MB / 95.4 GB available
+
+Get:1 http://kali.download/kali kali-rolling/main amd64 wordlists all 2023.2.0 [53.4 MB]
+Fetched 53.4 MB in 1min 45s (508 kB/s)                                         
+Selecting previously unselected package wordlists.
+(Reading database ... 378916 files and directories currently installed.)
+Preparing to unpack .../wordlists_2023.2.0_all.deb ...
+Unpacking wordlists (2023.2.0) ...
+Setting up wordlists (2023.2.0) ...
+Processing triggers for kali-menu (2025.1.1) ...
+                                                                                
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$  sudo gzip -d /usr/share/wordlists/rockyou.txt.gz
+                                                                                
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$ john ziphash.txt --wordlist=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+secret123        (word.zip/abc.txt)     
+1g 0:00:00:00 DONE (2025-05-01 11:09) 100.0g/s 2048Kp/s 2048Kc/s 2048KC/s christal..michelle4
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
+                                                                                
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$ john --show ziphash.txt
+word.zip/abc.txt:secret123:abc.txt:word.zip::word.zip
+
+1 password hash cracked, 0 left
+                                                                                
+┌──(bluejay㉿BlueJAY)-[~/Downloads]
+└─$ 
+
